@@ -1,0 +1,11 @@
+.poly-item img {
+    height: 150px;
+    max-width:  95%;
+}
+.poly-item .card-title{
+    font-size: smaller;
+}
+
+.poly-item-detail img{
+    max-width: 80%;
+}

@@ -1,0 +1,39 @@
+<div xmlns:th="http://www.thymeleaf.org">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" th:href="@{/}">VNCO</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" th:href="@{/}">Home</a>
+                    </li>
+                    <th:block th:if="${#request.remoteUser}">
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/security/logoff}">Log out</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/order/list}">Order</a>
+                        </li>
+                        <li th:if ="${#request.isUserInRole('DIRE') or #request.isUserInRole('STAFF')}">
+                            <a class="nav-link" th:href="@{/admin/home/index}">Admin</a>
+                        </li>
+                    </th:block>
+                    <th:block th:unless="${#request.remoteUser}">
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/security/login/form}">Sign In</a>
+                        </li>
+                    </th:block>
+
+                    <li th:if="${#request.remoteUser}" class="nav-item ">
+                        <a class="nav-link">Welcome [[${#request.remoteUser}]]</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
